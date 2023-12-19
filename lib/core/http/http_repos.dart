@@ -1,5 +1,6 @@
 import 'package:sample_project/services/api/capsule_repo.dart';
 import 'package:sample_project/services/api/cores_repo.dart';
+import 'package:sample_project/services/api/history_repo.dart';
 
 class HttpRepos {
   static HttpRepos? _instance;
@@ -13,5 +14,6 @@ class HttpRepos {
   //TODO: add all repos here
   static final CapsuleRepo capsuleRepo = CapsuleRepo();
   static final CoresRepo cores = CoresRepo();
+  static final HistoryRepo historyRepo = HistoryRepo();
 
 }
