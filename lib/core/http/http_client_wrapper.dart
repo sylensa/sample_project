@@ -20,11 +20,8 @@ class HttpClientWrapper {
   static var dio = Dio(); //Client
   final Box _box = Hive.box('app');
 
-  // static const String _baseUrl = 'https://api.manyactive.com';
   static const String _baseUrl = 'https://api.spacexdata.com/v3';
-  static const kLoginUrls = ['merchantcompletesignup', 'login'];
-
-  // static const String _apiVersion = '1';
+  static const kLoginUrls = ['spacexdata', 'login'];
 
   static String apiUrl(String path, Map<String, dynamic>? queryParams) {
     var uriString = '$_baseUrl/$path';
@@ -82,106 +79,7 @@ class HttpClientWrapper {
     // dio.interceptors.add(DioCacheManager(CacheConfig(baseUrl: _baseUrl)).interceptor);
   }
 
-  // Future<GenericHttpResponse> _executeHttpRequest(
-  //   HttpRequestType httpRequestType,
-  //   String path,
-  //   Map<String, dynamic>? queryParams, {
-  //   dynamic body,
-  // }) async {
-  //   Response dioResponse;
-  //   GenericHttpResponse response = GenericHttpResponse();
 
-  //   // final cacheDuration = 1;
-
-  //   try {
-  //     switch (httpRequestType) {
-  //       case HttpRequestType.GET:
-  //         dioResponse = await dio.get(
-  //           apiUrl(path, queryParams),
-  //           // options: buildCacheOptions(Duration(days: cacheDuration)),
-  //         );
-  //         break;
-  //       case HttpRequestType.POST:
-  //         dioResponse = await dio.post(
-  //           apiUrl(path, queryParams),
-  //           data: body,
-  //           // options: buildCacheOptions(Duration(days: cacheDuration)),
-  //         );
-  //         break;
-  //       case HttpRequestType.PUT:
-  //         dioResponse = await dio.put(
-  //           apiUrl(path, queryParams),
-  //           data: body,
-  //           // options: buildCacheOptions(Duration(days: cacheDuration)),
-  //         );
-  //         break;
-  //       case HttpRequestType.DELETE:
-  //         dioResponse = await dio.delete(apiUrl(path, queryParams));
-  //         break;
-  //       case HttpRequestType.DOWNLOAD:
-  //         dioResponse = await dio.get<ResponseBody>(apiUrl(path, queryParams),
-  //             options: Options(responseType: ResponseType.stream));
-  //         break;
-  //       default:
-  //         dioResponse = await dio.get(
-  //           apiUrl(path, queryParams),
-  //           // options: buildCacheOptions(Duration(days: cacheDuration)),
-  //         );
-  //         break;
-  //     }
-  //     //Request was a success
-  //     response.success = true;
-  //     response.body = dioResponse.data;
-  //     response.status = dioResponse.statusCode;
-
-  //     return response;
-  //   } catch (e) {
-  //     final dioError = e as DioError;
-  //     // Get.snackbar("Dio Error", dioError.response?.data?.toString() ?? '');
-  //     if (dioError.response?.data is Map) {
-  //       var responseMap = dioError.response?.data as Map;
-
-  //       if (responseMap.containsKey('msg')) {
-  //         response.message = dioError.response?.data['msg'];
-  //       } else {
-  //         // response.message = dioError.message;
-  //         response.body = dioError.response?.data;
-  //       }
-  //     } else if (dioError.response?.data is String) {
-  //       response.message = dioError.response?.data;
-  //     } else {
-  //       response.message = dioError.message;
-  //     }
-
-  //     response.status = dioError.response?.statusCode;
-  //     response.error = dioError.error;
-
-  //     // if not authenticated, then logout
-  //     if (response.status == 401) {
-  //       // clear all box stores
-  //       // remove all important data from memory
-  //       _box.remove("mood_recording_time");
-  //       _box.remove("fit_consent_accepted");
-  //       _box.remove("account");
-  //       // _box.remove("non_logged_page");
-  //       _box.remove("step_route");
-  //       // _box.remove("userId");
-  //       _box.remove("token");
-  //       _box.remove("latestActivityTimeStampString");
-  //       if (!_userLogController.onUnauthScreen) {
-  //         _userLogController.onUnauthScreen = true;
-  //         // Navigate to onboarding.
-  //         Get.Get.to(() => SignupScreen());
-  //         // record don't attempt
-
-  //       }
-
-  //       // Navigator.of(context).pushReplacementNamed('/onboarding');
-  //     }
-
-  //     return GenericHttpResponse();
-  //   }
-  // }
 
   Future<GenericHttpResponse> _executeHttpRequest(
     HttpRequestType httpRequestType,
