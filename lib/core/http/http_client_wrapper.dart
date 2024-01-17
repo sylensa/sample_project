@@ -4,7 +4,6 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:hive/hive.dart';
 
 import 'generic_http_response.dart';
 
@@ -18,7 +17,6 @@ enum HttpRequestType {
 
 class HttpClientWrapper {
   static var dio = Dio(); //Client
-  final Box _box = Hive.box('app');
 
   static const String _baseUrl = 'https://api.spacexdata.com/v3';
   static const kLoginUrls = ['spacexdata', 'login'];
@@ -49,16 +47,14 @@ class HttpClientWrapper {
 
         // check if url is in the server api and url
         // is not protected by logged in user
-          Box box = Hive.box("app");
 
             if (_baseUrl.contains(options.uri.host) &&
             !kLoginUrls.contains(options.uri.path.split('/').last)) {
-          final token = box.get('token');
 
           options.headers = {
             "Accept": "application/json",
             "content-type": "application/json",
-            'Authorization': 'Bearer $token',
+            'Authorization': 'Bearer',
           };
         }
 
@@ -76,7 +72,6 @@ class HttpClientWrapper {
       }),
     );
 
-    // dio.interceptors.add(DioCacheManager(CacheConfig(baseUrl: _baseUrl)).interceptor);
   }
 
 
